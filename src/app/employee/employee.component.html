@@ -1,0 +1,39 @@
+<p>
+  employee works!
+</p>
+{{empList | json}}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Id
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Salary
+      </th>
+      <th>
+        Address
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of empList">
+      <td>
+        {{emp.id}}
+      </td>
+      <td>
+        {{emp.name}}
+      </td>
+      <td>
+        {{emp.salary}}
+      </td>
+      <td>
+        {{emp.address}}
+      </td>
+    </tr>
+  </tbody>
+</table>
