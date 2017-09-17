@@ -2,6 +2,8 @@
   Order Component
 </h1>
 <hr>
-<app-order-list [orderList]="orders" (message)="receiveFromChild($event)"></app-order-list>
+<app-order-list [orderList]="orders" [test]="'This is message'" (message)="receiveFromChild($event)"></app-order-list>
 
 {{message}}
+
+<button class="btn btn-primary" (click)="addOrder()">AddOrder</button>
