@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild , DoCheck } from '@angular/core';
 import { Order } from './order';
 import { OrderListComponent } from './order-list/order-list.component';
 @Component({
@@ -6,7 +6,7 @@ import { OrderListComponent } from './order-list/order-list.component';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, DoCheck {
   orders = new Array<Order>();
   message: string;
   @ViewChild(OrderListComponent)
@@ -21,6 +21,10 @@ export class OrderComponent implements OnInit {
 
     // this.orderListComponet.orderList = this.orders;
   }
+
+   ngDoCheck(): void{
+     console.log(this.orders);
+   }
 
   receiveFromChild(data: string) {
     this.message = data;

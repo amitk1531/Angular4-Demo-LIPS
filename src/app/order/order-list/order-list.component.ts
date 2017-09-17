@@ -1,7 +1,7 @@
 import {
   Component, OnInit, Input
   , Output, EventEmitter, OnChanges, SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy, DoCheck , OnDestroy
 } from '@angular/core';
 import { Order } from '../order'
 
@@ -11,7 +11,8 @@ import { Order } from '../order'
   styleUrls: ['./order-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrderListComponent implements OnInit, OnChanges {
+export class OrderListComponent implements OnInit,
+ OnChanges, DoCheck, OnDestroy {
   @Input() orderList: Order[];
   @Input() test: string;
   @Output() message = new EventEmitter<string>();
@@ -23,7 +24,16 @@ export class OrderListComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  ngDoCheck(): void {
+    console.log(this.orderList);
+  }
+
   sendMessageToParent() {
     this.message.emit("This is message from child");
   }
+
+   ngOnDestroy(): void{
+      alert('This is destry event');
+   }
+  
 }
