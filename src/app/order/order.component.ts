@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild , DoCheck } from '@angular/core';
-import { Order } from './order';
+import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
+import { Order } from '../service/order/order';
+import { OrderService } from '../service/order/order.service';
 import { OrderListComponent } from './order-list/order-list.component';
 @Component({
   selector: 'app-order',
@@ -12,19 +13,16 @@ export class OrderComponent implements OnInit, DoCheck {
   @ViewChild(OrderListComponent)
   orderListComponet: OrderListComponent;
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
-    this.orders = [{ id: 1, customerName: 'Test1', orderDate: new Date('aug-16-2007'), qty: 3 },
-    { id: 2, customerName: 'Test1', orderDate: new Date('aug-17-2009'), qty: 4 },
-    { id: 3, customerName: 'Test1', orderDate: new Date('aug-18-2005'), qty: 5 }]
-
+      this.orders = this.orderService.getOrders();
     // this.orderListComponet.orderList = this.orders;
   }
 
-   ngDoCheck(): void{
-     console.log(this.orders);
-   }
+  ngDoCheck(): void {
+    console.log(this.orders);
+  }
 
   receiveFromChild(data: string) {
     this.message = data;

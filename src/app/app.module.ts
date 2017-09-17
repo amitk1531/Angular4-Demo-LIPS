@@ -7,6 +7,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { OrderComponent } from './order/order.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 
+import { OrderService } from './service/order/order.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import {
   , Output, EventEmitter, OnChanges, SimpleChanges,
   ChangeDetectionStrategy, DoCheck , OnDestroy
 } from '@angular/core';
-import { Order } from '../order'
+import { Order } from '../../service/order/order';
 
 @Component({
   selector: 'app-order-list',
@@ -33,7 +33,7 @@ export class OrderListComponent implements OnInit,
   }
 
    ngOnDestroy(): void{
-      alert('This is destry event');
+      alert('This is destroy event');
    }
   
 }
