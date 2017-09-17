@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,Output, EventEmitter } from '@angular/core';
 import { Order } from '../order'
 
 @Component({
@@ -8,9 +8,14 @@ import { Order } from '../order'
 })
 export class OrderListComponent implements OnInit {
   @Input() orderList: Order[];
+  @Output() message = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  sendMessageToParent()
+  {
+    this.message.emit("This is message from child");
+  }
 }

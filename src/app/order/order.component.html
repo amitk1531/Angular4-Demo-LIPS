@@ -2,4 +2,6 @@
   Order Component
 </h1>
 <hr>
-<app-order-list [orderList]="orders"></app-order-list>
+<app-order-list [orderList]="orders" (message)="receiveFromChild($event)"></app-order-list>
+
+{{message}}
