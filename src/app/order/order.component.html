@@ -9,7 +9,7 @@
 {{orderForm.value | json }}
 <form #orderForm="ngForm" (submit)="addOrder()">
   <div class="form-group">
-    <input type="number" required min="2" max="5" [(ngModel)]="order.id" name="id" class="form-control" #id="ngModel">
+    <input type="number" required [(ngModel)]="order.id" name="id" class="form-control" #id="ngModel">
     {{id.valid}}
     {{id.value}}
     {{id.pristine}}
