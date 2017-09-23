@@ -1,6 +1,37 @@
 <h1>
-  Order Component
+  Order Form
 </h1>
+<!-- <input type="text" [(ngModel)]="message" name="message" class="form-control"> -->
+
+{{order | json}}
+{{orderForm.valid | json }}
+{{orderForm.invalid | json }}
+{{orderForm.value | json }}
+<form #orderForm="ngForm" (submit)="addOrder()">
+  <div class="form-group">
+    <input type="number" required min="2" max="5" [(ngModel)]="order.id" name="id" class="form-control" #id="ngModel">
+    {{id.valid}}
+    {{id.value}}
+    {{id.pristine}}
+    {{id.dirty}}
+    {{id.errors| json}}
+    <div [hidden]="id.dirty && id.valid" class="alert alert-danger">
+      Please provide order id
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="text" required [(ngModel)]="order.customerName" name="customername" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="number" required [(ngModel)]="order.qty" name="qty" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="date" required [(ngModel)]="order.orderDate" name="orderdate" class="form-control">
+  </div>
+  <div class="form-group">
+    <button [disabled]="orderForm.invalid"  type="submit" class="btn btn-primary">Add Order</button>
+  </div>
+</form>
 <hr>
 <app-order-list [orderList]="orders" [test]="'This is message'" (message)="receiveFromChild($event)"></app-order-list>
 

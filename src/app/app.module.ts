@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -17,9 +19,13 @@ import { OrderService } from './service/order/order.service';
     OrderListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [OrderService],
+  providers: [
+    //OrderService,
+    { provide: OrderService, useClass: OrderService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
