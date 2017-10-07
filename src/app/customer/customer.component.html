@@ -1,4 +1,4 @@
-<h1>
+<!-- <h1>
   Welcome {{name}}
 </h1>
 <div *ngIf="isVisible" [innerText]="name">
@@ -13,4 +13,65 @@
   </div>
 </div>
 
-<button (click)="toggle()">Toggle</button>
+<button (click)="toggle()">Toggle</button> -->
+
+{{customerForm.value | json }}
+
+<form [formGroup]="customerForm" novalidate (submit)="addCustomer()">
+  <div class="form-group">
+    <input class="form-control" type="text" formControlName="name" name="customername" placeholder="Customer Name">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="number" formControlName="age" name="age" placeholder="Age">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="date" formControlName="dob" name="dob" placeholder="Date Of Birth">
+  </div>
+  <div formGroupName="address">
+    <div class="form-group">
+      <input class="form-control" type="text" formControlName="addressLine1" name="addrLine1" placeholder="Address Line1">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" formControlName="addressLine2" name="addrLine1" placeholder="Address Line2">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" formControlName="state" name="state" placeholder="State">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" formControlName="city" name="city" placeholder="City">
+    </div>
+  </div>
+  <div>
+    <h1>Cards</h1>
+  </div>
+  <div *ngIf="maxCardsReached">
+    <button class="btn btn-primary" (click)="addCard()">Add Card</button>
+  </div>
+  <div formArrayName="cards">
+    <div *ngFor="let card of customerForm.controls.cards.controls;let i=index">
+      <div>
+        <h2>Card {{i+1}}</h2>
+      </div>
+      <div [formGroupName]="i">
+        <div class="form-group">
+          <input class="form-control" type="number" formControlName="cardNumber" name="cardnumber" placeholder="Card Number">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="date" formControlName="expiryMonth" name="month" placeholder="Month">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="date" formControlName="expiryYear" name="year" placeholder="Year">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="number" formControlName="cvv" name="cvv" placeholder="CVV">
+        </div>
+        <div *ngIf="i>0">
+          <button class="btn btn-danger" (click)="removeCard(i)">Remove Card</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button [disabled]="customerForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
